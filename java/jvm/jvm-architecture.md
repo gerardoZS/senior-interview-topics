@@ -68,7 +68,6 @@ performs a class loading process. The class loading process has three phases: lo
   
 
 ### Bibliography  
-https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
-https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
-
-
+https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/  
+https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading  
+https://www.geeksforgeeks.org/jvm-works-jvm-architecture/  
