@@ -126,6 +126,12 @@ and (optionally) **resolution**.
 - **Resolution**  
   In this activity the symbolic references are replaces with direct references.
 
+### Initialization
+This is the last phase of the class loading process. In this phase, all static variables are assigned with their values
+defined in the code and static blocks are executed.
+
+
+
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
 - https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
