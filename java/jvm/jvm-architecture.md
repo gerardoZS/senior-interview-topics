@@ -83,15 +83,15 @@ below on the hierarchy, which repeats the same process: loads the type successfu
 > What is the difference between **NoClassDefFoundError** and **ClassNotFoundException**?
 >
 > - **NoClassDefFoundError**  
-> This **error** is thrown when a type was present at compile time, but it's not present at runtime.    
-> <br>
+> This **error** is thrown when a type was present at compile time, but it's not present at runtime.  
+> 
 > - **ClassNotFoundException**  
 > This **checked exception** is thrown when you try to load a class using its fully qualified name (with the methods
 > `Class.forName`, `ClassLoader.loadClass` or `ClassLoader.findSystemClass`) and the required class cannot be found.
 
 <br>
 The three built-in classloaders are explained below:  
-<br>
+<br><br>
 
 - **Bootstrap Class Loader**  
   This is the hierarchy's root class loader and is implemented in languages like C or C++. It's the parent class loader
