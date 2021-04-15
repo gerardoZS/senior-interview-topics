@@ -38,21 +38,32 @@ The JVM consists of three main components:
 ![jvm-architecture.png](./img/jvm-architecture.png)
 
 ## The Class Loader component
-The Class Loader component is responsible for loading the byte code from *class files* into the JVM Runtime Memory. 
+The Class Loader component is responsible for the class loading process. The class loading process has three phases: 
+**loading**, **linking**, and **initialization**. 
 
-When a Java application uses a type (class, interface, or enum) for the first time, the Class Loader component 
-performs a class loading process. The class loading process has three phases: **loading**, **linking**, and 
-**initialization**.
+When a Java application uses a type (class, interface, enum, etc) for the first time, the Class Loader component
+performs a class loading process. 
 
-![img.png](./img/class-loader-component.png)
+![class-loader-component.png](./img/class-loader-component.png)
 
 ### Loading  
-Loading phase involves looking for the required type based on its fully qualified name, and if was found,
-taking its bytecode representation and load the type representation in memory, specifically in the *Method Area* that
-belongs to the *Runtime Memory* component.
-  
-> **Method Area, Metaspace and Permgen**  
-> TODO
+The loading phase involves looking for a required type based on its *binary name*, and if was found, taking its bytecode
+representation and creates its representation as a `java.lang.Class` instance. 
+
+> Any class name provided as a `String` parameter to methods in `ClassLoader` must be a *binary name* as defined by
+> The Java™ Language Specification. Examples of valid class names include:
+> 
+> - "java.lang.String" -> The binary name of a top level type is its canonical name.
+> - "javax.swing.JSpinner$DefaultEditor" -> The binary name of an inner class.
+> - "java.security.KeyStore$Builder$FileBuilder$1" -> The binary name of an anonymous class.
+> 
+> According to the `java.lang.Class` documentation, the instances of this class represent a type (class, interface,
+> enum, annotation, arrays, and even the Java primitive types and the keyword `void`). 
+>   
+> The class `Class` has no public constructor, instead, `Class` objects are constructed by the JVM during the
+> loading phase with a call to method `ClassLoader.defineClass`.
+> 
+> Every `Class` object contains a reference to the `ClassLoader` object that defined it.
   
 For the loading phase, the JVM uses a parent-delegation model and a hierarchy of three built-in class loaders.  
 
@@ -67,7 +78,39 @@ below on the hierarchy, which repeats the same process: loads the type successfu
 ![class-loader-parent-delegation-model.png](./img/class-loader-parent-delegation-model.png)  
 <br>
 
+> What is the difference between **NoClassDefFoundError** and **ClassNotFoundException**?
+>
+> - **NoClassDefFoundError**  
+> This **error** is thrown when a type was present at compile time, but it's not present at runtime.    
+> <br>
+> - **ClassNotFoundException**  
+> This **checked exception** is thrown when you try to load a class using its fully qualified name (with the methods
+> `Class.forName`, `ClassLoader.loadClass` or `ClassLoader.findSystemClass`) and the required class cannot be found.
+
+<br>
+The three built-in classloaders are explained below:  
+
+- **Bootstrap Class Loader**  
+  This is the hierarchy's root class loader and is implemented in languages like C or C++. It's the parent class loader
+  of *Extension Class Loader*. The *Bootstrap Class Loader* is responsible for loading types that belong to the standard
+  libraries of Java (Java SE API). These libraries are present in the `$JAVA_HOME/jre/lib` directory.  
+  <br>
+- **Extension Class Loader**  
+  The *Extension Class Loader* is implemented with Java and is the parent class loader of *Application Class Loader*.
+  This class loader is responsible for loading types from "extensions" of the standard libraries of Java. Any *jar* in
+  the `$JAVA_HOME/jre/lib/ext` directory is treated as an extension.  
+  <br>
+- **Application Class Loader**  
+  The *Application Class loader* is implemented with Java and is responsible for loading types from the application
+  classpath.
+
 ### Bibliography  
-https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/  
-https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading  
-https://www.geeksforgeeks.org/jvm-works-jvm-architecture/  
+- https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
+- https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
+- https://www.geeksforgeeks.org/jvm-works-jvm-architecture/  
+- https://dzone.com/articles/java-classnotfoundexception-vs-noclassdeffounderro
+- https://docs.oracle.com/javase/tutorial/ext/basics/install.html
+- https://blogs.oracle.com/sundararajan/understanding-java-class-loading
+- https://blogs.oracle.com/sundararajan/jvm-talks
+- https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html
+- https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html
