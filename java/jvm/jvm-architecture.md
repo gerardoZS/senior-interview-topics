@@ -107,6 +107,25 @@ The three built-in classloaders are explained below:
   The *Application Class loader* is implemented with Java and is responsible for loading types from the application
   classpath.
 
+<br>
+
+### Linking
+This phase comes after the loading phase. The linking phase performs **verification**, **preparation**,
+and (optionally) **resolution**.  
+
+- **Verification**  
+  This activity is done by the *ByteCode Verifier* and ensures the correctness and security of the bytecode inside a 
+  *class* file. If verification fails a `java.lang.VerifyError`is thrown.  
+  
+  For example, if the code was built with Java 11, but trying to run on a system that has Java 8, the verification
+  will fail.  
+  
+- **Preparation**  
+  The JVM allocates memory for statics fields and assigns default values to them.  
+  
+- **Resolution**  
+  In this activity the symbolic references are replaces with direct references.
+
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
 - https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
