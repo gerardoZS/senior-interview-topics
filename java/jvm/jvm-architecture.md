@@ -48,7 +48,8 @@ performs a class loading process.
 
 ### Loading  
 The loading phase involves looking for a required type based on its *binary name*, and if was found, taking its bytecode
-representation and creates its representation as a `java.lang.Class` instance. 
+representation and creates its representation as a `java.lang.Class` instance.  
+<br>
 
 > Any class name provided as a `String` parameter to methods in `ClassLoader` must be a *binary name* as defined by
 > The Java™ Language Specification. Examples of valid class names include:
@@ -64,7 +65,8 @@ representation and creates its representation as a `java.lang.Class` instance.
 > loading phase with a call to method `ClassLoader.defineClass`.
 > 
 > Every `Class` object contains a reference to the `ClassLoader` object that defined it.
-  
+
+<br>
 For the loading phase, the JVM uses a parent-delegation model and a hierarchy of three built-in class loaders.  
 
 The parent-delegation model states that any request for a class loader to load a given type is first delegated to
@@ -89,6 +91,7 @@ below on the hierarchy, which repeats the same process: loads the type successfu
 
 <br>
 The three built-in classloaders are explained below:  
+<br>
 
 - **Bootstrap Class Loader**  
   This is the hierarchy's root class loader and is implemented in languages like C or C++. It's the parent class loader
