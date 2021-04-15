@@ -46,7 +46,7 @@ performs a class loading process.
 
 ![class-loader-component.png](./img/class-loader-component.png)
 
-### Loading  
+### Loading phase
 The loading phase involves looking for a required type based on its *binary name*, and if was found, taking its bytecode
 representation and creates its representation as a `java.lang.Class` instance.  
 <br>
@@ -107,9 +107,7 @@ The three built-in classloaders are explained below:
   The *Application Class loader* is implemented with Java and is responsible for loading types from the application
   classpath.
 
-<br>
-
-### Linking
+### Linking phase
 This phase comes after the loading phase. The linking phase performs **verification**, **preparation**,
 and (optionally) **resolution**.  
 
@@ -126,7 +124,7 @@ and (optionally) **resolution**.
 - **Resolution**  
   In this activity the symbolic references are replaces with direct references.
 
-### Initialization
+### Initialization phase
 This is the last phase of the class loading process. In this phase, all static variables are assigned with their values
 defined in the code and static blocks are executed.
 
