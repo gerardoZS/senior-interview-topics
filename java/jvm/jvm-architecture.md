@@ -307,6 +307,7 @@ when one method is called multiple times, every call requires a new interpretati
 The Just-In-Time Compiler (JIT) is used to improve performance. When the Execution Engine detects a repeated method
 call, if required, uses JIT to generate native code, which is used directly for subsequent calls, avoiding unnecessary
 interpretations.
+
 <br>
 
 ### Garbage Collector
@@ -325,6 +326,15 @@ The garbage collection process involves two phases:
 
 <br>
 
+## Java Native Interface (JNI) & Native Method Libraries
+The JVM implementations can use native libraries, and also Java applications can do. How does this works? 
+
+Java Native Interface (JNI) is an API from the Java Standard Edition platform (Java SE), which in short, is an adapter
+that allows invoking natives methods form Java applications. So, the JVM uses the Java Native Interface for its
+dependencies over native libraries. Remember that Java Native Interface is part of Java SE, is not part of the JVM! 
+
+<br>
+
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
 - https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
@@ -337,3 +347,4 @@ The garbage collection process involves two phases:
 - https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html
 - https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html
 - https://stuefe.de/posts/metaspace/what-is-metaspace/ (TO READ)
+- https://docs.oracle.com/javase/8/docs/technotes/guides/jni/
