@@ -298,6 +298,10 @@ overhead. For performance improvement, the Execution Engine determines when uses
 
 ![execution-engine-component.png](./img/execution-engine-component.png)
 
+### Interpreter
+The interpreter reads and executes the bytecode instructions line by line. A disadvantage of the interpreter is that
+when one method is called multiple times, every call requires a new interpretation.  
+<br>
 
 
 ### Bibliography  
