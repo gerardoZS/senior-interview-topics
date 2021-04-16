@@ -179,6 +179,23 @@ If the memory in the Method Area cannot be available to satisfy an allocation re
 
 <br>
 
+### Heap Area
+The Heap is created on JVM startup and is shared among all the threads. The Heap is the runtime data area (memory space)
+from which memory for all objects (class instances and arrays) is allocated.
+
+> **Quote about the Heap in the JVM specification**
+>  
+> *"Heap storage for objects is reclaimed by an automatic storage management system (known as a garbage collector);
+> objects are never explicitly deallocated. The Java Virtual Machine assumes no particular type of automatic storage
+> management system, and the storage management technique may be chosen according to the implementor's system
+> requirements. The heap may be of a fixed size or may be expanded as required by the computation and may be contracted
+> if a larger heap becomes unnecessary. The memory for the heap does not need to be contiguous."*
+
+If a computation requires more Heap that can be made available by the *Garbage Collector*, the JVM throws an
+`OutOfMemoryError`.
+
+<br>
+
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
 - https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
