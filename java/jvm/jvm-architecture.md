@@ -32,7 +32,7 @@ components that compose the JVM.
 The JVM consists of three main components:
 
 1. Class Loader
-2. Runtime Memory
+2. Runtime Data Areas
 2. Execution Engine
 
 ![jvm-architecture.png](./img/jvm-architecture.png)
@@ -51,7 +51,9 @@ The loading phase involves looking for a required type based on its *binary name
 representation and creates its representation as a `java.lang.Class` instance.  
 <br>
 
-> Any class name provided as a `String` parameter to methods in `ClassLoader` must be a *binary name* as defined by
+> **What is the binary name of a type?**
+> 
+> Any type name provided as a `String` parameter to methods in `ClassLoader` must be a *binary name* as defined by
 > The Java™ Language Specification. Examples of valid class names include:
 > 
 > - "java.lang.String" -> The binary name of a top level type is its canonical name.
@@ -80,7 +82,7 @@ below on the hierarchy, which repeats the same process: loads the type successfu
 ![class-loader-parent-delegation-model.png](./img/class-loader-parent-delegation-model.png)  
 <br>
 
-> What is the difference between **NoClassDefFoundError** and **ClassNotFoundException**?
+> **What is the difference between `NoClassDefFoundError` and `ClassNotFoundException`?**
 >
 > - **NoClassDefFoundError**  
 > This **error** is thrown when a type was present at compile time, but it's not present at runtime.  
@@ -129,7 +131,6 @@ This is the last phase of the class loading process. In this phase, all static v
 defined in the code and static blocks are executed.
 
 
-
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
 - https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
@@ -140,3 +141,4 @@ defined in the code and static blocks are executed.
 - https://blogs.oracle.com/sundararajan/jvm-talks
 - https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html
 - https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html
+- https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html
