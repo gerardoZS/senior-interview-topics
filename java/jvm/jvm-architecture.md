@@ -244,6 +244,21 @@ the JVM throws an `OutOfMemoryError`.
 
 <br>
 
+### PC Register
+The PC Register is a per-thread runtime data area, which means that a thread has its own PC (program counter) Register.
+At any point, each thread is executing the code of a single method, namely the current method (the method call at the
+top of the stack). If the current method is not *native*, the PC Register contains the address of the JVM instruction
+currently being executed. If the current method is *native*, the value of the PC Register is undefined. 
+
+<br>
+
+> **Quote about the PC Register in the JVM specification**
+>
+> *"The Java Virtual Machine's pc register is wide enough to hold a `returnAddress` or a native pointer on the
+> specific platform."* 
+
+<br>
+
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
 - https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
