@@ -110,6 +110,8 @@ The three built-in classloaders are explained below:
   The *Application Class loader* is implemented with Java and is responsible for loading types from the application
   classpath.
 
+<br>
+
 ### Linking phase
 This phase comes after the loading phase. The linking phase performs **verification**, **preparation**,
 and (optionally) **resolution**.  
@@ -127,9 +129,13 @@ and (optionally) **resolution**.
 - **Resolution**  
   In this activity the symbolic references are replaces with direct references.
 
+<br>
+
 ### Initialization phase
 This is the last phase of the class loading process. In this phase, all static variables are assigned with their values
-defined in the code and static blocks are executed.
+defined in the code and static blocks are executed.  
+
+<br>
 
 ## Runtime Data Areas
 This component groups the different runtime data areas (memory spaces) that are used during the execution of a program.
@@ -147,6 +153,8 @@ The following diagram shows the five runtime data areas of a JVM:
 >
 > Also, the JVM specification states that each **Runtime Constant Pool** is allocated from the **Method Area**.
 > That's why the **Runtime Constant Pool** is considered as part of the **Method Area**.  
+
+<br>
 
 ### Method Area
 The Method Area is created on JVM startup and is shared among all the threads. It stores per-class / per-interface
@@ -169,6 +177,7 @@ If the memory in the Method Area cannot be available to satisfy an allocation re
 > 
 > There is a lot of "information" on the internet, but I have not found any trusted source, so, this a pending topic. 
 
+<br>
 
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
