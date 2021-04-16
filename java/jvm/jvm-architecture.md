@@ -200,9 +200,49 @@ from which memory for all objects (class instances and arrays) is allocated.
 
 If a computation requires more Heap that can be made available by the *Garbage Collector*, the JVM throws an
 `OutOfMemoryError`.
-<br>
+
+<br>  
 
 ### Stack Area
+The Stack is a per-thread runtime data area, which means that when the JVM creates a new thread, also creates one Stack
+for that thread. A Stack is a private memory space for one, and just one thread, and stores the method calls (and all 
+related with each method call, like local variables and partial results) performed by the task associated with the
+thread.  
+<br>
+
+> **Thread and Stack official names**  
+> 
+> In the JVM specification these are the official names for a thread and a stack:
+> 
+> - **Thread** -> *Java Virtual Machine thread*  
+>   This makes sense to differentiate them from the operating system's threads.  
+> 
+> - **Stack** -> *Java Virtual Machine stack*
+
+<br>
+
+As the name implies, the Stack has a *LIFO* behavior, where each element of the Stack is called a *frame* and corresponds
+to a method call.
+
+<br>
+
+> **Quotes about the Stack in the JVM specification**
+> 
+> *"The memory for a Java Virtual Machine stack does not need to be contiguous."*
+> 
+> *"This specification permits Java Virtual Machine stacks either to be of a fixed size or to dynamically expand and
+> contract as required by the computation. If the Java Virtual Machine stacks are of a fixed size, the size of each
+> Java Virtual Machine stack may be chosen independently when that stack is created."*
+
+<br>
+
+If a computation in a thread requires a larger Stack that is permitted, the JVM throws a `StackOverflowError`.
+
+If a Stack can be dynamically expanded, and expansion is attempted but insufficient memory can be available to
+perform the expansion, or if insufficient memory can be made available to create the Stack for a new thread,
+the JVM throws an `OutOfMemoryError`.
+
+<br>
 
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
@@ -215,3 +255,4 @@ If a computation requires more Heap that can be made available by the *Garbage C
 - https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html
 - https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html
 - https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html
+- https://stuefe.de/posts/metaspace/what-is-metaspace/ (TO READ)
