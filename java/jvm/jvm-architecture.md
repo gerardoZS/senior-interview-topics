@@ -160,7 +160,8 @@ The following diagram shows the five runtime data areas of a JVM:
 The Method Area is created on JVM startup and is shared among all the threads. It stores per-class / per-interface
 structures such as the **Runtime Constant Pool**, field and method data, and the code for methods and constructors,
 including special methods (created by the compiler, we talk about them in another article) used in class and instance
-initialization and interface initialization.
+initialization and interface initialization.  
+<br>
 
 > **Quote about the Method Area in the JVM specification**
 >
@@ -170,8 +171,11 @@ initialization and interface initialization.
 > may be contracted if a larger method area becomes unnecessary. The memory for the method area does not need to be
 > contiguous."*
 
-If the memory in the Method Area cannot be available to satisfy an allocation request, the JVM throws an
-`OutOfMemoryError`.
+<br>
+
+If the memory in the Method Area cannot be available to satisfy an allocation request, the JVM throws an 
+`OutOfMemoryError`.  
+<br>
 
 > **Are PermGen or Metaspace implementations of Method Area**?
 > 
@@ -181,7 +185,8 @@ If the memory in the Method Area cannot be available to satisfy an allocation re
 
 ### Heap Area
 The Heap is created on JVM startup and is shared among all the threads. The Heap is the runtime data area (memory space)
-from which memory for all objects (class instances and arrays) is allocated.
+from which memory for all objects (class instances and arrays) is allocated.  
+<br>
 
 > **Quote about the Heap in the JVM specification**
 >  
@@ -191,10 +196,13 @@ from which memory for all objects (class instances and arrays) is allocated.
 > requirements. The heap may be of a fixed size or may be expanded as required by the computation and may be contracted
 > if a larger heap becomes unnecessary. The memory for the heap does not need to be contiguous."*
 
+<br>
+
 If a computation requires more Heap that can be made available by the *Garbage Collector*, the JVM throws an
 `OutOfMemoryError`.
-
 <br>
+
+### Stack Area
 
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
