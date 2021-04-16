@@ -146,7 +146,29 @@ The following diagram shows the five runtime data areas of a JVM:
 > that works as a runtime representation of the `constant_pool` table in a *class file*.
 >
 > Also, the JVM specification states that each **Runtime Constant Pool** is allocated from the **Method Area**.
-> That's why the **Runtime Constant Pool** is considered as part of the **Method Area**.
+> That's why the **Runtime Constant Pool** is considered as part of the **Method Area**.  
+
+### Method Area
+The Method Area is created on JVM startup and is shared among all the threads. It stores per-class / per-interface
+structures such as the **Runtime Constant Pool**, field and method data, and the code for methods and constructors,
+including special methods (created by the compiler, we talk about them in another article) used in class and instance
+initialization and interface initialization.
+
+> **Quote about the Method Area in the JVM specification**
+>
+> *"Although the method area is logically part of the heap, simple implementations may choose not to either garbage
+> collect or compact it. This specification does not mandate the location of the method area or the policies used to
+> manage compiled code. The method area may be of a fixed size or may be expanded as required by the computation and
+> may be contracted if a larger method area becomes unnecessary. The memory for the method area does not need to be
+> contiguous."*
+
+If the memory in the Method Area cannot be available to satisfy an allocation request, the JVM throws an
+`OutOfMemoryError`.
+
+> **Are PermGen or Metaspace implementations of Method Area**?
+> 
+> There is a lot of "information" on the internet, but I have not found any trusted source, so, this a pending topic. 
+
 
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
