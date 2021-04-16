@@ -303,6 +303,11 @@ The interpreter reads and executes the bytecode instructions line by line. A dis
 when one method is called multiple times, every call requires a new interpretation.  
 <br>
 
+### JIT Compiler
+The Just-In-Time Compiler (JIT) is used to improve performance. When the Execution Engine detects a repeated method
+call, if required, uses JIT to generate native code, which is used directly for subsequent calls, avoiding unnecessary
+interpretations.
+<br>
 
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
