@@ -131,6 +131,22 @@ and (optionally) **resolution**.
 This is the last phase of the class loading process. In this phase, all static variables are assigned with their values
 defined in the code and static blocks are executed.
 
+## Runtime Data Areas
+This component groups the different runtime data areas (memory spaces) that are used during the execution of a program.
+Some of these data areas are created on JVM startup and are destroyed only when the JVM exits. Other data areas are per
+thread. Per thread data areas are created when a thread is created and destroyed when the thread exits.
+
+The following diagram shows the five runtime data areas of a JVM:
+
+![runtime-data-areas-component.png](./img/runtime-data-areas-component.png)
+
+> **Wait a minute... The JVM specification defines six runtime data areas, what's going on here?**
+>
+> The JVM specification defines the **Runtime Constant Pool** data area. This is a per-class or per-interface data area
+> that works as a runtime representation of the `constant_pool` table in a *class file*.
+>
+> Also, the JVM specification states that each **Runtime Constant Pool** is allocated from the **Method Area**.
+> That's why the **Runtime Constant Pool** is considered as part of the **Method Area**.
 
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
