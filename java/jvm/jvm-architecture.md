@@ -287,6 +287,19 @@ for a new thread, the JVM throws an `OutOfMemoryError`.
 
 <br>
 
+## Execution Engine
+The Execution Engine component is responsible for running the application. To run an application, the Execution Engine
+component executes bytecode instructions, uses data stored in runtime data areas, and runs the garbage collection
+process as needed.
+
+Executing bytecode instructions involves translating them to the physical machine's instructions, and this generates an
+overhead. For performance improvement, the Execution Engine determines when uses the *Interpreter* or the
+*JIT Compiler*.
+
+![execution-engine-component.png](./img/execution-engine-component.png)
+
+
+
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
 - https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
