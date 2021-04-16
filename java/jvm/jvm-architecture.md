@@ -236,7 +236,7 @@ to a method call.
 
 <br>
 
-If a computation in a thread requires a larger Stack that is permitted, the JVM throws a `StackOverflowError`.
+If a computation in a thread requires a larger Stack than is permitted, the JVM throws a `StackOverflowError`.
 
 If a Stack can be dynamically expanded, and expansion is attempted but insufficient memory can be available to
 perform the expansion, or if insufficient memory can be made available to create the Stack for a new thread,
@@ -256,6 +256,34 @@ currently being executed. If the current method is *native*, the value of the PC
 >
 > *"The Java Virtual Machine's pc register is wide enough to hold a `returnAddress` or a native pointer on the
 > specific platform."* 
+
+<br>
+
+### Native Method Stack
+The Native Method Stack, as its name implies, is used to support calls to *native* methods (written in languages
+such as C or C++). Typically, a Native Method Stack is allocated when a thread is created, therefore is a per-thread
+runtime area.
+
+<br>
+
+> **Quotes about the Native Method Stack in the JVM specification**
+>
+> *"Native method stacks may also be used by the implementation of an interpreter for the Java Virtual Machine's
+> instruction set in a language such as C. Java Virtual Machine implementations that cannot load native methods and
+> that do not themselves rely on conventional stacks need not supply native method stacks."*
+> 
+> *"This specification permits native method stacks either to be of a fixed size or to dynamically expand and contract
+> as required by the computation. If the native method stacks are of a fixed size, the size of each native method stack
+> may be chosen independently when that stack is created."*
+
+<br>
+
+If a computation in a thread requires a larger Native Method Stack than is permitted, the JVM throws a 
+`StackOverflowError`.
+
+If a Native Method Stack can be dynamically expanded, and expansion is attempted but insufficient memory can be
+available to perform the expansion, or if insufficient memory can be made available to create the Native Method Stack
+for a new thread, the JVM throws an `OutOfMemoryError`.
 
 <br>
 
