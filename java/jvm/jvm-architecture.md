@@ -309,6 +309,22 @@ call, if required, uses JIT to generate native code, which is used directly for 
 interpretations.
 <br>
 
+### Garbage Collector
+The Garbage Collector, as its name implies, performs the garbage collection process, which consists on destroy the
+unreachable objects from the Heap (and maybe from the Method Area) to deallocate memory and make it available to the
+application.
+
+The garbage collection process involves two phases:
+
+1. **Mark**  
+   In the first phase, the Garbage Collector identifies the unreachable objects. 
+   
+
+2. **Sweep**  
+   The Garbage Collector destroys the objects identified during the previous phase.
+
+<br>
+
 ### Bibliography  
 - https://www.freecodecamp.org/news/jvm-tutorial-java-virtual-machine-architecture-explained-for-beginners/
 - https://www.ibm.com/docs/en/sdk-java-technology/7.1?topic=uc-class-loading
