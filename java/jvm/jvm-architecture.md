@@ -19,7 +19,8 @@ underlying platform. So, the same *class file* can be executed on different plat
 compatible JRE.  
 <br>
 
-> **NOTE**  
+> **Now the JVM is not Java exclusive!**  
+> 
 > The JVM was initially designed to support only Java. However, over time, many other languages such as Scala, Kotlin,
 > and Groovy run on the JVM. All of these languages are collectively known as JVM languages.
 
