@@ -236,3 +236,99 @@ that is:
 
 `@SpringBootApplication` also provides aliases to customize the attributes of `@EnableAutoConfiguration` and 
 `@ComponentScan`.
+
+## Spring Boot Features
+
+### SpringApplication
+
+#### Application Availability
+When deployed on platforms, applications can provide information about their availability to the platform using
+infrastructure such as Kubernetes Probes. Spring Boot includes out-of-the box support for the commonly used “liveness”
+and “readiness” availability states. If you are using Spring Boot’s “actuator” support then these states are exposed
+as health endpoint groups.
+
+In addition, you can also obtain availability states by injecting the ApplicationAvailability interface into your own
+beans.
+
+##### Liveness State
+The “Liveness” state of an application tells whether its internal state allows it to work correctly, or recover by 
+itself if it’s currently failing. A broken “Liveness” state means that the application is in a state that it cannot
+recover from, and the infrastructure should restart the application.
+
+> **IMPORTANT**
+> In general, the "Liveness" state should not be based on external checks, such as *Health checks*. If it did, a
+> failing external system (a database, a Web API, an external cache) would trigger massive restarts and cascading
+> failures across the platform.
+
+The internal state of Spring Boot applications is mostly represented by the Spring *ApplicationContext*. If the
+application context has started successfully, Spring Boot assumes that the application is in a valid state. An 
+application is considered live as soon as the context has been refreshed, see 
+*Spring Boot application lifecycle and related Application Events*.
+
+##### Readiness State
+The “Readiness” state of an application tells whether the application is ready to handle traffic. A failing “Readiness”
+state tells the platform that it should not route traffic to the application for now. This typically happens during
+startup, while `CommandLineRunner` and `ApplicationRunner` components are being processed, or at any time if the
+application decides that it’s too busy for additional traffic.
+
+An application is considered ready as soon as application and command-line runners have been called, see
+*Spring Boot application lifecycle and related Application Events*.
+
+> **IMPORTANT**
+> 	Tasks expected to run during startup should be executed by `CommandLineRunner` and `ApplicationRunner` components
+> instead of using Spring component lifecycle callbacks such as `@PostConstruct`.
+
+### Externalized Configuration
+// TODO
+
+### Profiles
+Spring Profiles provide a way to segregate parts of your application configuration and make it be available only in
+certain environments. Any `@Component`, `@Configuration` or `@ConfigurationProperties` can be marked with `@Profile`
+to limit when it is loaded, as shown in the following example:
+
+```java
+@Configuration(proxyBeanMethods = false)
+@Profile("production")
+public class ProductionConfiguration {
+
+    // ...
+
+}
+```
+> **IMPORTANT**
+> If @ConfigurationProperties beans are registered via @EnableConfigurationProperties instead of automatic scanning, 
+> the @Profile annotation needs to be specified on the @Configuration class that has the @EnableConfigurationProperties 
+> annotation. In the case where @ConfigurationProperties are scanned, @Profile can be specified on the 
+> @ConfigurationProperties class itself.
+
+### Developing Web Applications
+
+#### The “Spring Web MVC Framework”
+The Spring Web MVC framework (often referred to as “Spring MVC”) is a rich “model view controller” web framework. 
+Spring MVC lets you create special @Controller or @RestController beans to handle incoming HTTP requests. 
+Methods in your controller are mapped to HTTP by using @RequestMapping annotations.
+
+The following code shows a typical @RestController that serves JSON data:
+
+```java
+@RestController
+@RequestMapping(value="/users")
+public class MyRestController {
+
+    @RequestMapping(value="/{user}", method=RequestMethod.GET)
+    public User getUser(@PathVariable Long user) {
+        // ...
+    }
+
+    @RequestMapping(value="/{user}/customers", method=RequestMethod.GET)
+    List<Customer> getUserCustomers(@PathVariable Long user) {
+        // ...
+    }
+
+    @RequestMapping(value="/{user}", method=RequestMethod.DELETE)
+    public User deleteUser(@PathVariable Long user) {
+        // ...
+    }
+
+}
+```
