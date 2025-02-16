@@ -11,6 +11,7 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("maven-publish")
 }
 
 repositories {
@@ -41,10 +42,22 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "org.gzs.design.gof.StrategyPatternSample"
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "org.gzs.design.gof"
+            artifactId = "strategy-pattern-sample"
+            version = "1.0"
+
+            from(components["java"])
+        }
+    }
 }
