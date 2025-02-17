@@ -23,7 +23,7 @@ public interface MessageSender {
     /**
      * Sends a message for a specific target.
      *
-     * @param message Message to send.
+     * @param messageWrapper An instance of {@link MessageWrapper}.
      */
-    void send(String message);
+    void send(MessageWrapper messageWrapper);
 }

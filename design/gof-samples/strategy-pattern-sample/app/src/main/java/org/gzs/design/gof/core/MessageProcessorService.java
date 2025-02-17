@@ -26,7 +26,7 @@ public class MessageProcessorService implements MessageProcessor {
             if (messageSender == null) {
                 throw new IllegalArgumentException("Not supported target: " + target);
             }
-            messageSender.send(messageWrapper.message());
+            messageSender.send(messageWrapper);
         });
     }
 }

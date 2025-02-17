@@ -35,9 +35,9 @@ class MessageProcessorTest extends Specification {
         messageProcessor.process(messageWrapper, targets)
 
         then:
-        1 * smsStrategy.send(message)
-        1 * emailStrategy.send(message)
-        0 * pushStrategy.send(message)
+        1 * smsStrategy.send(messageWrapper)
+        1 * emailStrategy.send(messageWrapper)
+        0 * pushStrategy.send(messageWrapper)
     }
 
     def "fails when trying to send a message to an unsupported target"() {
@@ -66,7 +66,7 @@ class MessageProcessorTest extends Specification {
 
         then:
         thrown(IllegalArgumentException)
-        0 * emailStrategy.send(message)
+        0 * emailStrategy.send(messageWrapper)
     }
 
 }
