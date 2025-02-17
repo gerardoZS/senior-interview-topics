@@ -5,6 +5,6 @@ import spock.lang.Specification
 class MessageWrapperBuilderTest extends Specification {
     def "Gets an instance of MessageWrapperBuilder"() {
         expect:
-        MessageWrapper.builder() intanceof MessageWrapperBuilder
+        MessageWrapper.MessageWrapperBuilder.isInstance(MessageWrapper.builder())
     }
 }
