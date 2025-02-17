@@ -10,7 +10,11 @@ class MessageProcessorTest extends Specification {
         def userId = UUID.randomUUID()
         def subject = "Test message"
         def message = "Hello world!"
-        def messageWrapper = new MessageWrapper(messageId, userId, subject, message)
+        def messageWrapper = MessageWrapper.builder().messageId(messageId)
+                .userId(userId)
+                .subject(subject)
+                .message(message)
+                .build()
         def targets = ["sms", "email"]
         MessageSender smsStrategy = Mock()
         MessageSender emailStrategy = Mock()
