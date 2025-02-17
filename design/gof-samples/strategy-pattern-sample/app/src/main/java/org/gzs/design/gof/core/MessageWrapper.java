@@ -17,29 +17,39 @@ public record MessageWrapper(UUID messageId, UUID userId, String subject, String
     }
 
     private static class MessageWrapperBuilderImpl implements MessageWrapperBuilder {
+
+        private UUID messageId;
+        private UUID userId;
+        private String subject;
+        private String message;
+
         @Override
         public MessageWrapperBuilder messageId(UUID messageId) {
-            return null;
+            this.messageId = messageId;
+            return this;
         }
 
         @Override
         public MessageWrapperBuilder userId(UUID userId) {
-            return null;
+            this.userId = userId;
+            return this;
         }
 
         @Override
         public MessageWrapperBuilder subject(String subject) {
-            return null;
+            this.subject = subject;
+            return this;
         }
 
         @Override
         public MessageWrapperBuilder message(String message) {
-            return null;
+            this.message = message;
+            return this;
         }
 
         @Override
         public MessageWrapper build() {
-            return null;
+            return new MessageWrapper(this.messageId, this.userId, this.subject, this.message);
         }
     }
 }

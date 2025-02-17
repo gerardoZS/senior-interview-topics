@@ -23,11 +23,9 @@ class MessageWrapperBuilderTest extends Specification {
                 .build();
 
         then:
-        with(messageWrapper) {
-            messageId() == messageId;
-            userId() == userId
-            subject() == subject
-            message() == message
-        }
+        messageWrapper.messageId() == messageId
+        messageWrapper.userId() == userId
+        messageWrapper.subject() == subject
+        messageWrapper.message() == message
     }
 }
