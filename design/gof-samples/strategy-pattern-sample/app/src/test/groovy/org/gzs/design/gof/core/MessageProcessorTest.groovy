@@ -16,15 +16,20 @@ class MessageProcessorTest extends Specification {
                 .message(message)
                 .build()
         def targets = ["sms", "email"]
+
+        and:
         MessageSender smsStrategy = Mock()
         MessageSender emailStrategy = Mock()
         MessageSender pushStrategy = Mock()
-        MessageProcessor messageProcessor = new MessageProcessorService([smsStrategy, emailStrategy, pushStrategy])
-
-        and:
+        smsStrategy.getSupportedTarget() >> "sms"
+        emailStrategy.getSupportedTarget() >> "email"
+        pushStrategy.getSupportedTarget() >> "push"
         smsStrategy.support("sms") >> true
         emailStrategy.support("email") >> true
         pushStrategy.support("push") >> true
+
+        and:
+        MessageProcessor messageProcessor = new MessageProcessorService([smsStrategy, emailStrategy, pushStrategy])
 
         when:
         messageProcessor.process(messageWrapper, targets)

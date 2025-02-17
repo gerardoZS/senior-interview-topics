@@ -1,24 +1,32 @@
 package org.gzs.design.gof.core;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MessageProcessorService implements MessageProcessor {
 
-    private final List<MessageSender> messageSenderList;
+    private final Map<String, MessageSender> messageSenderMap;
 
     public MessageProcessorService(List<MessageSender> messageSenderList) {
-        this.messageSenderList = messageSenderList;
+        messageSenderMap = new HashMap<>();
+        messageSenderList.forEach(messageSender -> {
+            String target = messageSender.getSupportedTarget();
+            if (messageSenderMap.containsKey(target)) {
+                throw new IllegalArgumentException("Duplicated MessageSender for the target " + target);
+            }
+            messageSenderMap.put(target, messageSender);
+        });
     }
 
     @Override
     public void process(MessageWrapper messageWrapper, List<String> targets) {
-        for (String target : targets) {
-            for (MessageSender messageSender : messageSenderList) {
-                if (messageSender.support(target)) {
-                    messageSender.send(messageWrapper.message());
-                    break;
-                }
+        targets.forEach(target -> {
+            MessageSender messageSender = messageSenderMap.get(target);
+            if (messageSender == null) {
+                throw new IllegalArgumentException("Not supported target: " + target);
             }
-        }
+            messageSender.send(messageWrapper.message());
+        });
     }
 }
