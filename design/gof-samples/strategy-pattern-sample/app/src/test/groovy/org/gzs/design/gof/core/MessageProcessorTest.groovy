@@ -6,8 +6,12 @@ class MessageProcessorTest extends Specification {
 
     def "receives a message and send it to the specified targets using sender mockups"() {
         given:
+        def userId = UUID.randomUUID()
+        def messageId = UUID.randomUUID()
+        def subject = "Test message"
+        def message = "Hello world!"
+        def messageWrapper = new MessageWrapper(userId, messageId, subject, message)
         def targets = ["sms", "email"]
-        String message = "Hello world!"
         MessageSender smsStrategy = Mock()
         MessageSender emailStrategy = Mock()
         MessageSender pushStrategy = Mock()
@@ -19,7 +23,7 @@ class MessageProcessorTest extends Specification {
         pushStrategy.support("push") >> true
 
         when:
-        messageProcessor.process(message, targets)
+        messageProcessor.process(messageWrapper, targets)
 
         then:
         1 * smsStrategy.send(message)

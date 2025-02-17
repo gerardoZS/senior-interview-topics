@@ -9,8 +9,8 @@ public interface MessageProcessor {
 
     /**
      * Process a message that must be sent to the specified targets.
-     * @param message Message.
-     * @param targets Targets to which the message will be sent.
+     * @param messageWrapper An instance of {@link MessageWrapper}.
+     * @param targets The targets.
      */
-    void process(String message, List<String> targets);
+    void process(MessageWrapper messageWrapper, List<String> targets);
 }

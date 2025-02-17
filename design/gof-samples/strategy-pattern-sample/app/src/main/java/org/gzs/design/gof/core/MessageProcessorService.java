@@ -11,11 +11,11 @@ public class MessageProcessorService implements MessageProcessor {
     }
 
     @Override
-    public void process(String message, List<String> targets) {
+    public void process(MessageWrapper messageWrapper, List<String> targets) {
         for (String target : targets) {
             for (MessageSender messageSender : messageSenderList) {
                 if (messageSender.support(target)) {
-                    messageSender.send(message);
+                    messageSender.send(messageWrapper.message());
                     break;
                 }
             }
